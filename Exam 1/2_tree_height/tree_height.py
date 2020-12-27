@@ -62,10 +62,6 @@ def compute_height(n, parents):
 def main():
     n = int(input())
     parents = list(map(int, input().split()))
-    # print(compute_height(5, [4, -1, 4, 1, 1]))
-    # print(compute_height(5, [-1, 0, 4, 0, 1]))
-    # print(compute_height(10, [9, 7, 5, 5, 2, 9, 9, 9, 2, -1]))
-
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
