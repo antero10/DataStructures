@@ -62,6 +62,7 @@ def compute_height(n, parents):
 def main():
     n = int(input())
     parents = list(map(int, input().split()))
+    print(compute_height(n, parents))
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
