@@ -11,19 +11,20 @@ class Job:
         self.started_at = started_at
 
     def __lt__(self, other):
-        return self.started_at < other.started_at or (self.id < other.id and self.started_at <= other.started_at)
+        return self.started_at < other.started_at or self.id <= other.id
 
     def __le__(self, other):
-        return self.started_at <= other.started_at or (self.id <= other.id and self.started_at <= other.started_at)
+        return self.started_at <= other.started_at or self.id < other.id
 
     def __gt__(self, other):
-        return self.started_at > other.started_at or (self.id > other.id and self.started_at >= other.started_at)
+        return self.started_at > other.started_at or self.id > other.id
 
     def __ge__(self, other):
-        return self.started_at >= other.started_at or (self.id > other.id and self.started_at >= other.started_at)
+        return self.started_at >= other.started_at or self.id >= other.id
 
     def __str__(self):
         return 'Job(id=%s, started_at=%s)' % (self.id, self.started_at)
+
 
 class PriorityQueue:
     def __init__(self, A):
@@ -32,7 +33,7 @@ class PriorityQueue:
         self.BuildHeap()
 
     def BuildHeap(self):
-        for i in range(self.size//2 - 1, -1, -1):
+        for i in range(self.size // 2, 0, -1):
             self.SiftDown(i)
 
     def Insert(self, p):
@@ -50,8 +51,8 @@ class PriorityQueue:
     def SiftUp(self, i):
         index = i
         parent = i // 2
-        while index > 1 and self.A[parent] > self.A[i]:
-            self.A[i], self.A[parent] = self.A[parent], self.A[i]
+        while index > 0 and self.A[parent] > self.A[index]:
+            self.A[index], self.A[parent] = self.A[parent], self.A[index]
             index = parent
 
     def SiftDown(self, i):
@@ -69,6 +70,7 @@ class PriorityQueue:
             self.A[i], self.A[max_index] = self.A[max_index], self.A[i]
             self.SiftDown(max_index)
 
+
 def assign_jobs(n_workers, jobs):
     result = []
     workers = [Job(n, 0) for n in range(0, n_workers)]
@@ -78,7 +80,6 @@ def assign_jobs(n_workers, jobs):
         result.append(AssignedJob(worker.id, worker.started_at))
         worker.started_at += job
         priority_queue.Insert(worker)
-        priority_queue.BuildHeap()
     return result
 
 

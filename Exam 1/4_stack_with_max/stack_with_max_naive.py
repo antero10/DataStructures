@@ -12,7 +12,6 @@ class StackWithMax():
                 self.__stack.append(a)
             else:
                 self.__stack.insert(0, a)
-                self.__stack.append(b)
         else:
             self.__stack.append(a)
 
